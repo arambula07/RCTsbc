@@ -21,9 +21,9 @@ export default class Home extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      odds: '0',
-      wagerAmount: '0',
-      winningTotal: '0',
+      odds: '110',
+      wagerAmount: null,
+      winningTotal: '',
       hasBeenCalculated: false
     };
     this.calculateWinnings = this.calculateWinnings.bind(this)
@@ -67,6 +67,7 @@ export default class Home extends Component {
           buttonStyle={{marginTop: 20}}
           title='Calculate Winnings'
           backgroundColor="#27ae60"
+          disabled={!this.state.wagerAmount}
           onPress={this.calculateWinnings}
         />
 
