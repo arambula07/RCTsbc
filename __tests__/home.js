@@ -1,4 +1,4 @@
-import {calcTotal} from '../App/containers/Home'
+import {calcTotal} from '../App/containers/Calculator'
 
 describe('bet wager calculator', () => {
   it('it should return the proper amount for a positive wager', () => {

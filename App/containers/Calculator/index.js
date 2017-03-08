@@ -4,8 +4,8 @@ import {
   Text,
 } from 'react-native'
 
-import { FormLabel, FormInput, Button } from 'react-native-elements'
-import styles from './homeStyles'
+import { FormLabel, FormInput, Button, Icon } from 'react-native-elements'
+import styles from './calculatorStyles'
 
 export function calcTotal(oddsAmount, wager) {
   const odds = parseInt(oddsAmount);
@@ -17,7 +17,22 @@ export function calcTotal(oddsAmount, wager) {
   return total
 }
 
-export default class Home extends Component {
+export default class Calculator extends Component {
+  static navigationOptions = {
+    title: ({ state }) => `Chat with`,
+    tabBar: {
+      label: 'Calculator',
+
+      // Note: By default the icon is only shown on iOS. Search the showIcon option below.
+      icon: ({ tintColor }) => (
+        <Icon
+          name='dollar'
+          type='font-awesome'
+          color={tintColor}
+        />
+      ),
+    },
+  }
   constructor(props) {
     super(props);
     this.state = {
