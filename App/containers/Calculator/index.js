@@ -7,15 +7,7 @@ import {
 import { FormLabel, FormInput, Button, Icon } from 'react-native-elements'
 import styles from './calculatorStyles'
 
-export function calcTotal(oddsAmount, wager) {
-  const odds = parseInt(oddsAmount);
-  const isNegative = odds < 0;
-  if(isNegative) {
-    return Math.round(Math.abs(100 / odds * wager))
-  }
-  let total = odds * wager * .01;
-  return total
-}
+import {calcTotal} from '../../utils/calculatorHelper'
 
 export default class Calculator extends Component {
   static navigationOptions = {
@@ -32,7 +24,7 @@ export default class Calculator extends Component {
         />
       ),
     },
-  }
+  };
   constructor(props) {
     super(props);
     this.state = {
