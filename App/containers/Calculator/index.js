@@ -28,7 +28,7 @@ export default class Calculator extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      odds: '110',
+      odds: '-110',
       wagerAmount: null,
       winningTotal: '',
       hasBeenCalculated: false
