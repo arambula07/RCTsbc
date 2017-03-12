@@ -9,7 +9,15 @@ import { List, ListItem } from 'react-native-elements'
 export default class RecentBets extends Component {
 
   onItemClick(bet){
-    this.props.navigation.navigate('RecentCalculator', bet)
+    switch (bet.type) {
+      case "parlay":
+        this.props.navigation.navigate('RecentParlay', {bet: bet, onSubmit: () => {}})
+        break;
+      case 'single':
+      default:
+        this.props.navigation.navigate('RecentCalculator', {bet: bet, onSubmit: () => {}})
+        break;
+    }
   }
 
   renderRecentBets() {
@@ -29,9 +37,9 @@ export default class RecentBets extends Component {
   }
   render() {
     return (
-      <View>
+      <ScrollView>
         {this.renderRecentBets()}
-      </View>
+      </ScrollView>
     )
   }
 

@@ -2,7 +2,8 @@ import React, {Component} from 'react'
 import {
   View,
   Text,
-  StyleSheet
+  StyleSheet,
+  StatusBar
 } from 'react-native'
 import SbcNavigator from './Router'
 
@@ -17,7 +18,6 @@ export default class App extends Component {
     this.deleteRecentBet = this.deleteRecentBet.bind(this);
   }
   addRecentBet(newBet, type) {
-    console.warn(newBet.winningTotal)
     newBet.type = type;
     this.setState({
       recentBets: [newBet, ...this.state.recentBets]
@@ -33,12 +33,14 @@ export default class App extends Component {
   }
   render() {
     return (
-      <SbcNavigator screenProps={{
-        recentBets: this.state.recentBets,
-        addRecentBet: this.addRecentBet,
-        editRecentBet: this.editRecentBet,
-        deleteRecentBet: this.deleteRecentBet,
-      }}/>
+        <SbcNavigator screenProps={{
+          recentBets: this.state.recentBets,
+          addRecentBet: this.addRecentBet,
+          editRecentBet: this.editRecentBet,
+          deleteRecentBet: this.deleteRecentBet,
+          }}/>
+
+
     )
   }
 

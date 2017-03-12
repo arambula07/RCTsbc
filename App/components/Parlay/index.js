@@ -11,7 +11,7 @@ import styles from './paylayStyles'
 
 import {calcParlay} from '../../utils/calculatorHelper'
 
-import { FormLabel, FormInput, Button, Icon } from 'react-native-elements'
+import { FormLabel, FormInput, Button } from 'react-native-elements'
 
 export default class Parlay extends Component {
 
@@ -20,13 +20,19 @@ export default class Parlay extends Component {
     this.addPick = this.addPick.bind(this);
     this.renderPicks = this.renderPicks.bind(this);
     this.calculateWinnings = this.calculateWinnings.bind(this);
+    const bet = this.props.bet || this.props.navigation.state.params.bet;
+    const hasBeenCalculated = !!bet.winningTotal;
+
+    this.onSubmit = this.props.onSubmit || this.props.navigation.state.params.onSubmit;
+    const {odds, winningTotal, wagerAmount, picks} = bet;
+
     this.state = {
-      picks: [
+      picks:  picks || [
         Parlay.generatePick()
       ],
-      wagerAmount: null,
-      winningTotal: null,
-      hasBeenCalculated: false
+      wagerAmount,
+      winningTotal,
+      hasBeenCalculated
     }
   }
 
@@ -79,10 +85,13 @@ export default class Parlay extends Component {
 
   calculateWinnings() {
     const parlay = this.state.picks.map(pick => pick.odds);
-    this.setState({
+    const newState = {
+      ...this.state,
       winningTotal: calcParlay(parlay, this.state.wagerAmount),
       hasBeenCalculated: true
-    })
+    };
+    this.setState(newState);
+    this.onSubmit(newState)
   }
 
   render() {

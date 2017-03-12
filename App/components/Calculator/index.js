@@ -13,14 +13,21 @@ import {calcTotal} from '../../utils/calculatorHelper'
 export default class Calculator extends Component {
   constructor(props) {
     super(props);
+    const bet = this.props.bet || this.props.navigation.state.params.bet;
+    const hasBeenCalculated = !!bet.winningTotal;
+
+    this.onSubmit = this.props.onSubmit || this.props.navigation.state.params.onSubmit;
+    const {odds, winningTotal, wagerAmount} = bet;
     this.state = {
-      odds: '-110',
-      wagerAmount: null,
-      winningTotal: '',
-      hasBeenCalculated: false
+      odds,
+      winningTotal,
+      wagerAmount,
+      hasBeenCalculated,
     };
     this.calculateWinnings = this.calculateWinnings.bind(this)
   }
+
+
   calculateWinnings() {
     const newState = {
       ...this.state,
@@ -28,7 +35,7 @@ export default class Calculator extends Component {
       hasBeenCalculated: true
     };
     this.setState(newState);
-    this.props.screenProps.addRecentBet(newState, 'single')
+    this.onSubmit(newState)
   }
 
   renderTotal() {
