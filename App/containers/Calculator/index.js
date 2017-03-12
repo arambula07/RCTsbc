@@ -10,21 +10,6 @@ import styles from './calculatorStyles'
 import {calcTotal} from '../../utils/calculatorHelper'
 
 export default class Calculator extends Component {
-  static navigationOptions = {
-    title: ({ state }) => `Chat with`,
-    tabBar: {
-      label: 'Calculator',
-
-      // Note: By default the icon is only shown on iOS. Search the showIcon option below.
-      icon: ({ tintColor }) => (
-        <Icon
-          name='dollar'
-          type='font-awesome'
-          color={tintColor}
-        />
-      ),
-    },
-  };
   constructor(props) {
     super(props);
     this.state = {
@@ -36,11 +21,13 @@ export default class Calculator extends Component {
     this.calculateWinnings = this.calculateWinnings.bind(this)
   }
   calculateWinnings() {
-
-    this.setState({
+    const newState = {
+      ...this.state,
       winningTotal: calcTotal(this.state.odds, this.state.wagerAmount),
       hasBeenCalculated: true
-    })
+    };
+    this.setState(newState);
+    this.props.screenProps.addRecentBet(newState, 'single')
   }
 
   renderTotal() {

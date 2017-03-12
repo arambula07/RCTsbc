@@ -2,29 +2,33 @@ import React, {Component} from 'react'
 import {
   View,
   Text,
+  ScrollView
 } from 'react-native'
-
-import { FormLabel, FormInput, Button, Icon } from 'react-native-elements'
+import { List, ListItem, Icon } from 'react-native-elements'
 
 export default class RecentBets extends Component {
-  static navigationOptions = {
-    tabBar: {
-      label: 'Recent Bets',
-      // Note: By default the icon is only shown on iOS. Search the showIcon option below.
-      icon: ({ tintColor }) => (
-        <Icon
-          name='history'
-          type='font-awesome'
-          color={tintColor}
-        />
-      ),
-    },
+
+  renderRecentBets() {
+    return (
+      <List containerStyle={{marginBottom: 20}}>
+        {
+          this.props.screenProps.recentBets.map((bets, i) => (
+            <ListItem
+              key={i}
+              title={`total winnings ${bets.winningTotal}`}
+            />
+          ))
+        }
+      </List>
+    )
   }
   render() {
     return (
       <View>
-
         <Text>Hello Recent bets</Text>
+        <Text>Hello Recent bets</Text>
+        <Text>Hello Recent bets</Text>
+        {this.renderRecentBets()}
       </View>
     )
   }

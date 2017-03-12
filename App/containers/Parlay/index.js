@@ -34,19 +34,6 @@ export default class Parlay extends Component {
     return {id: uuid(), odds: "0"}
   };
 
-  static navigationOptions = {
-    tabBar: {
-      label: 'Parlay',
-      // Note: By default the icon is only shown on iOS. Search the showIcon option below.
-      icon: ({ tintColor }) => (
-        <Icon
-          name='list-ol'
-          type='font-awesome'
-          color={tintColor}
-        />
-      ),
-    },
-  };
   renderPicks() {
     return this.state.picks.map((pick) => {
       return (

@@ -37,3 +37,22 @@ describe('calcParlay', () => {
     expect(calcParlay(parlay, 100)).toEqual(725)
   })
 });
+
+describe('api debug', () => {
+  it('should do something delayed', (testCb) => {
+    let original = {};
+    function setState(newStuff, cb) {
+      setTimeout(() => {
+        original = newStuff;
+        cb()
+      }, 1000)
+
+    }
+    function runAfter() {
+      expect(original).toEqual('testcb')
+      testCb()
+    }
+    setState('testcb ', runAfter);
+
+  })
+});
