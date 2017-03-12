@@ -1,7 +1,7 @@
 import {
   StyleSheet
 } from 'react-native'
-
+import {colors} from '../../theme'
 export default StyleSheet.create({
   container: {
     flex: 1,
@@ -24,6 +24,6 @@ export default StyleSheet.create({
     fontSize: 40,
     marginLeft: 20,
     marginTop: 5,
-    color: '#27ae60'
+    color: colors.accentColor
   }
 });

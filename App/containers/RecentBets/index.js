@@ -4,18 +4,23 @@ import {
   Text,
   ScrollView
 } from 'react-native'
-import { List, ListItem, Icon } from 'react-native-elements'
+import { List, ListItem } from 'react-native-elements'
 
 export default class RecentBets extends Component {
+
+  onItemClick(bet){
+    this.props.navigation.navigate('RecentCalculator', bet)
+  }
 
   renderRecentBets() {
     return (
       <List containerStyle={{marginBottom: 20}}>
         {
-          this.props.screenProps.recentBets.map((bets, i) => (
+          this.props.screenProps.recentBets.map((bet, i) => (
             <ListItem
               key={i}
-              title={`total winnings ${bets.winningTotal}`}
+              title={`total winnings ${bet.winningTotal}`}
+              onPress={() => this.onItemClick(bet)}
             />
           ))
         }
@@ -25,9 +30,6 @@ export default class RecentBets extends Component {
   render() {
     return (
       <View>
-        <Text>Hello Recent bets</Text>
-        <Text>Hello Recent bets</Text>
-        <Text>Hello Recent bets</Text>
         {this.renderRecentBets()}
       </View>
     )

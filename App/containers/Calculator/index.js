@@ -4,7 +4,8 @@ import {
   Text,
 } from 'react-native'
 
-import { FormLabel, FormInput, Button, Icon } from 'react-native-elements'
+import { FormLabel, FormInput, Button } from 'react-native-elements'
+import {colors} from '../../theme'
 import styles from './calculatorStyles'
 
 import {calcTotal} from '../../utils/calculatorHelper'
@@ -60,7 +61,7 @@ export default class Calculator extends Component {
         <Button
           buttonStyle={{marginTop: 20}}
           title='Calculate Winnings'
-          backgroundColor="#27ae60"
+          backgroundColor={colors.accentColor}
           disabled={!this.state.wagerAmount}
           onPress={this.calculateWinnings}
         />
